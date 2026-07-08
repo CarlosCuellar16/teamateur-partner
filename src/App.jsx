@@ -2,44 +2,47 @@ import React from 'react';
 
 export default function App() {
   const styles = {
-    body: { 
-      backgroundColor: '#0a1014', 
-      color: 'white', 
-      fontFamily: 'sans-serif', 
-      padding: '40px', 
-      display: 'flex', 
-      flexDirection: 'column', 
-      alignItems: 'center',
-      minHeight: '100vh'
-    },
-    titulo: { fontSize: '3rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '20px' },
-    subtitulo: { fontSize: '1.5rem', color: '#2dd4bf', marginBottom: '40px', textAlign: 'center' },
-    grid: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', width: '100%', maxWidth: '1000px' },
+    body: { backgroundColor: '#0a1014', color: '#ffffff', fontFamily: 'Arial, sans-serif', padding: '20px' },
+    header: { display: 'flex', justifyContent: 'space-between', padding: '20px 40px', borderBottom: '1px solid #1e293b' },
+    hero: { textAlign: 'center', padding: '80px 20px' },
+    titulo: { fontSize: '3.5rem', fontWeight: 'bold', marginBottom: '20px' },
+    subtitulo: { fontSize: '1.2rem', color: '#94a3b8', marginBottom: '40px' },
+    grid: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', maxWidth: '1100px', margin: '0 auto' },
     card: { backgroundColor: '#111b21', padding: '30px', borderRadius: '15px', border: '1px solid #334155', textAlign: 'center' },
-    btn: { backgroundColor: '#0d9488', color: 'white', padding: '15px 30px', borderRadius: '50px', border: 'none', fontWeight: 'bold', fontSize: '1.1rem', cursor: 'pointer', marginTop: '40px' }
+    precio: { fontSize: '2.5rem', fontWeight: 'bold', color: '#14b8a6', margin: '15px 0' },
+    boton: { backgroundColor: '#14b8a6', color: '#000', padding: '15px 30px', borderRadius: '30px', border: 'none', fontWeight: 'bold', cursor: 'pointer' }
   };
 
   return (
     <div style={styles.body}>
-      <h1 style={styles.titulo}>Conviértete en Partner Elite de Teamateur</h1>
-      <h2 style={styles.subtitulo}>Gana hasta un 30% de margen vendiendo la plataforma.</h2>
-      
+      <header style={styles.header}>
+        <h2 style={{margin: 0}}>TEAMATEUR</h2>
+        <nav>Torneos | Canchas | Jugadores | <span style={{color: '#14b8a6'}}>Partner</span></nav>
+      </header>
+
+      <section style={styles.hero}>
+        <h1 style={styles.titulo}>Partner Elite de Teamateur</h1>
+        <p style={styles.subtitulo}>Elige tu nivel y empieza a ganar beneficios exclusivos en la plataforma líder de fútbol amateur.</p>
+        <button style={styles.boton}>Convertirme en Partner</button>
+      </section>
+
       <div style={styles.grid}>
-        <div style={styles.card}>
-          <h3>PARTNER BRONCE</h3>
-          <p>10% margen</p>
-        </div>
-        <div style={styles.card}>
-          <h3>PARTNER PLATA</h3>
-          <p>20% margen</p>
-        </div>
-        <div style={styles.card}>
-          <h3>PARTNER ORO</h3>
-          <p>30% margen</p>
-        </div>
+        {[
+          { nivel: 'BRONCE', margen: '10%', desc: 'Capacitación inicial, soporte prioritario y material comercial básico.' },
+          { nivel: 'PLATA', margen: '20%', desc: 'Soporte prioritario, acceso anticipado y material comercial exclusivo.' },
+          { nivel: 'ORO', margen: '30%', desc: 'Soporte VIP, reuniones trimestrales, exclusividad territorial y premium.' }
+        ].map((plan) => (
+          <div key={plan.nivel} style={styles.card}>
+            <h3>PARTNER {plan.nivel}</h3>
+            <div style={styles.precio}>{plan.margen}</div>
+            <p style={{color: '#94a3b8', fontSize: '0.9rem'}}>{plan.desc}</p>
+          </div>
+        ))}
       </div>
 
-      <button style={styles.btn}>Hablar con un asesor</button>
+      <footer style={{textAlign: 'center', marginTop: '100px', color: '#64748b'}}>
+        <p>© 2026 Teamateur. La plataforma líder en Latinoamérica.</p>
+      </footer>
     </div>
   );
 }
